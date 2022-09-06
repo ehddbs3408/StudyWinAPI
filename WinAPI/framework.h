@@ -13,7 +13,9 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <string>
 
 #define PROGRAM_TITLE L"동윤이의 윈도우"
-#define WINSIZEX 800
-#define WINSIZEY 600
+#define WINSIZEX 1280
+#define WINSIZEY 720
+using namespace std;

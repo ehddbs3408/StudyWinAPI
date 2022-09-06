@@ -94,15 +94,16 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //        이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
 //        주 프로그램 창을 만든 다음 표시합니다.
 //
+int Resolutionx = GetSystemMetrics(SM_CXSCREEN);
+int Resolutiony = GetSystemMetrics(SM_CYSCREEN);
+
+int WinposX = Resolutionx / 2 - WINSIZEX / 2;
+int WinposY = Resolutiony / 2 - WINSIZEY / 2;
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   int Resolutionx = GetSystemMetrics(SM_CXSCREEN);
-   int Resolutiony = GetSystemMetrics(SM_CYSCREEN);
 
-   int WinposX = Resolutionx / 2 - WINSIZEX / 2;
-   int WinposY = Resolutiony / 2 - WINSIZEY / 2;
 
    HWND hWnd = CreateWindowW(szWindowClass, 
        szTitle,
@@ -162,10 +163,74 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+            wstring wstr = L"게임 프로그래밍 ";
+            //RECT rt = {};
+            //rt.left = 300;
+            //rt.top = 300;
+            //rt.right = 400;
+            //rt.bottom = 400;
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            Rectangle(hdc, 10, 10, 110, 110);
+            //Rectangle(hdc, 10, 10, 110, 110);
+            //Ellipse(hdc, 50, 50, 150, 150);
+            //TextOut(hdc, 200, 200, wstr.c_str(), wstr.length());
+            //DrawText(hdc, L"helloWorld", 10, &rt, DT_SINGLELINE | DT_RIGHT);
+            //MoveToEx(hdc, 0, 0, nullptr);
+            //LineTo(hdc, 800, 400);
+
+            //연습 문제 1번
+            /*
+            RECT rt{
+                WinposX,
+                WinposY,
+                WinposX + WINSIZEX,
+                WinposY + WINSIZEY
+            };
+            AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true);
+            MoveWindow(hWnd, WinposX, WinposY, rt.right - rt.left, rt.bottom - rt.top,true);
+
+             for (int i = 0; i < WINSIZEX; i += 80)
+            {
+                MoveToEx(hdc, i, 0, nullptr);
+                LineTo(hdc, i, 720);
+            }
+            for (int i = 0; i < WINSIZEY; i += 80)
+            {
+                MoveToEx(hdc, 0, i, nullptr);
+                LineTo(hdc, 1280, i);
+            }
+            */
+
+            //문제 2번
+            bool isCircle = false;
+            int line = 100;
+            int num = 100;
+            for (int i = 1; i < 26; i++)
+            {
+                if (isCircle==false)
+                {
+                    int sizeX = num;
+                    int sizeY = line;
+                    Rectangle(hdc, sizeX, sizeY, sizeX+ 50, sizeY + 50);
+                    num += 70;
+                }
+                else
+                {
+                    int sizeX = num;
+                    int sizeY = line;
+                    Ellipse(hdc, sizeX, sizeY, sizeX + 50, sizeY + 50);
+                    num += 70;
+                }
+                if (i % 5 == 0&&i!=0)
+                {
+                    isCircle = !isCircle;
+                    num = 100;
+                    line += 70;
+                }
+            }
             EndPaint(hWnd, &ps);
         }
+            
+           
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
