@@ -159,11 +159,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+        // 커널 오브젝트 (윈도우가 제어라는 오브젝트):-> 핸들(핸들로 이 오브젝트를 제어한다.)
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
+            //Dc : device Context = 그리기위한 데이터 핸들
             HDC hdc = BeginPaint(hWnd, &ps);
-            wstring wstr = L"게임 프로그래밍 ";
+
+            //dc의  기본펜은(black), 기본 브러쉬(하얀색)
+
+            HPEN hRedpen = CreatePen(PS_SOLID, 10, RGB(255, 0, 0));
+            HPEN hDefultpen = (HPEN)SelectObject(hdc, hRedpen);
+
+            HBRUSH hBluebrush = CreateSolidBrush(RGB(100, 100, 255));
+            HBRUSH hDefultbrush = (HBRUSH)SelectObject(hdc, hBluebrush);
+
+            Rectangle(hdc, 10, 10, 500, 500);
+
+            DeleteObject(hRedpen);
+            DeleteObject(hBluebrush);
+
+
+            //wstring wstr = L"게임 프로그래밍 ";
             //RECT rt = {};
             //rt.left = 300;
             //rt.top = 300;
@@ -201,6 +218,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             */
 
             //문제 2번
+            /*
             bool isCircle = false;
             int line = 100;
             int num = 100;
@@ -227,6 +245,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     line += 70;
                 }
             }
+            */
             EndPaint(hWnd, &ps);
         }
             
