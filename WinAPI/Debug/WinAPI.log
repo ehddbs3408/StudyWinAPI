@@ -1,2 +1,2 @@
 ﻿  WinAPI.cpp
-  WinAPI.vcxproj -> C:\Users\USER\source\repos\WinAPI\StudyWinAPI\Debug\WinAPI.exe
+LINK : fatal error LNK1168: C:\Users\USER\source\repos\WinAPI\StudyWinAPI\Debug\WinAPI.exe을(를) 쓰기용으로 열 수 없습니다.

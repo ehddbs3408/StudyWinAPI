@@ -16,6 +16,9 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+POINT g_ptObjPos = {500,300};
+POINT g_ptObjScale = {100,100};
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -140,6 +143,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    HDC hdc;
+    static wchar_t str[200];
+    static int i, yPos;
+    static SIZE size;
+    RECT rt = { 0,0,1000,1000 };
     switch (message)
     {
     case WM_COMMAND:
@@ -159,14 +167,79 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+    case WM_KEYDOWN:
+    {
+        switch (wParam)
+        {
+        case VK_UP:
+            MessageBox(hWnd, L"대희야 ㅋㅋㅋ 그것도 못깨니?",L"ㅋㅋㅋㅋㅋㅋ", MB_OK);
+            g_ptObjPos.y -= 10;
+            InvalidateRect(hWnd,nullptr,true);
+            break;
+        }
+    }
+        break;
+    case WM_LBUTTONDOWN:
+    {
+
+    }
+    break;
+    case WM_KEYUP:
+    {
+
+    }
+    break;
+    case WM_CREATE:
+        i = 0;
+        yPos = 0;
+        CreateCaret(hWnd, NULL, 2, 15); //(핸들,비트맵,두께, 높이)
+        ShowCaret(hWnd);
+        //GetClientRect(hWnd, &rtview);
+        break;
+    case WM_CHAR:
+    {
+        hdc = GetDC(hWnd);
+        if (wParam == VK_BACK&& i > 0)
+            i--;
+        else if (wParam == VK_RETURN)
+        {
+            i = 0;
+            yPos += 20;
+        }
+        else
+            str[i++] = wParam;
+        str[i] = '\0';
+        InvalidateRect(hWnd, nullptr,true);
+        ReleaseDC(hWnd, hdc);
+    }
+        break;
         // 커널 오브젝트 (윈도우가 제어라는 오브젝트):-> 핸들(핸들로 이 오브젝트를 제어한다.)
     case WM_PAINT:
         {
+        PAINTSTRUCT ps;
+        hdc = BeginPaint(hWnd, &ps);
+        GetTextExtentPoint(hdc, str, wcslen(str), &size);
+        SetCaretPos(size.cx, 0);
+        DrawText(hdc, str, wcslen(str), &rt, DT_TOP | DT_LEFT );
+        //TextOut(hdc, 0, yPos, str, wcslen(str));
+        EndPaint(hWnd, &ps);
+
+
+            /*
             PAINTSTRUCT ps;
             //Dc : device Context = 그리기위한 데이터 핸들
+            //dc의  기본펜은(black), 기본 브러쉬(하얀색)
             HDC hdc = BeginPaint(hWnd, &ps);
 
-            //dc의  기본펜은(black), 기본 브러쉬(하얀색)
+            Rectangle(hdc, 
+                g_ptObjPos.x - g_ptObjScale.x / 2,
+                g_ptObjPos.y - g_ptObjScale.y / 2,
+                g_ptObjPos.x + g_ptObjScale.x/2,
+                g_ptObjPos.y + g_ptObjScale.y/2);
+                */
+
+
+            /*
 
             HPEN hRedpen = CreatePen(PS_SOLID, 10, RGB(255, 0, 0));
             HPEN hDefultpen = (HPEN)SelectObject(hdc, hRedpen);
@@ -178,7 +251,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
             DeleteObject(hRedpen);
             DeleteObject(hBluebrush);
-
+            */
 
             //wstring wstr = L"게임 프로그래밍 ";
             //RECT rt = {};
@@ -246,13 +319,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 }
             }
             */
-            EndPaint(hWnd, &ps);
+
+            
         }
             
            
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
+        HideCaret(hWnd);
+        DestroyCaret();
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);

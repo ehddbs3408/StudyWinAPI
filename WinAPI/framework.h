@@ -14,6 +14,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <string>
+#include <time.h>
 
 #define PROGRAM_TITLE L"동윤이의 윈도우"
 #define WINSIZEX 1280
