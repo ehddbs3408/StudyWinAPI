@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "WinAPI.h"
+#include <math.h>
 
 #define MAX_LOADSTRING 100
 
@@ -18,6 +19,15 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 POINT g_ptObjPos = {500,300};
 POINT g_ptObjScale = {100,100};
+
+float CLength(int x1, int y1, int x2, int y2)
+{
+    return sqrt((float)(() * () + () * ());
+}
+bool InCircle(int x, int y, int mx, int my)
+{
+    if (CLength(x, y, mx, my) < RADIUS) return true;
+}
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -144,10 +154,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HDC hdc;
-    static wchar_t str[200];
-    static int i, yPos;
-    static SIZE size;
-    RECT rt = { 0,0,1000,1000 };
+    static int length = 20;
+    static int x = 50 , y=50;
     switch (message)
     {
     case WM_COMMAND:
@@ -169,46 +177,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_KEYDOWN:
     {
-        switch (wParam)
-        {
-        case VK_UP:
-            MessageBox(hWnd, L"대희야 ㅋㅋㅋ 그것도 못깨니?",L"ㅋㅋㅋㅋㅋㅋ", MB_OK);
-            g_ptObjPos.y -= 10;
-            InvalidateRect(hWnd,nullptr,true);
-            break;
-        }
+        SetTimer(hWnd, 1, 100, NULL);
     }
         break;
-    case WM_LBUTTONDOWN:
+    case WM_TIMER:
     {
 
     }
-    break;
-    case WM_KEYUP:
-    {
+        break;
 
-    }
-    break;
     case WM_CREATE:
-        i = 0;
-        yPos = 0;
-        CreateCaret(hWnd, NULL, 2, 15); //(핸들,비트맵,두께, 높이)
-        ShowCaret(hWnd);
-        //GetClientRect(hWnd, &rtview);
+
         break;
     case WM_CHAR:
     {
         hdc = GetDC(hWnd);
-        if (wParam == VK_BACK&& i > 0)
-            i--;
-        else if (wParam == VK_RETURN)
-        {
-            i = 0;
-            yPos += 20;
-        }
-        else
-            str[i++] = wParam;
-        str[i] = '\0';
         InvalidateRect(hWnd, nullptr,true);
         ReleaseDC(hWnd, hdc);
     }
@@ -218,109 +201,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
         PAINTSTRUCT ps;
         hdc = BeginPaint(hWnd, &ps);
-        GetTextExtentPoint(hdc, str, wcslen(str), &size);
-        SetCaretPos(size.cx, 0);
-        DrawText(hdc, str, wcslen(str), &rt, DT_TOP | DT_LEFT );
-        //TextOut(hdc, 0, yPos, str, wcslen(str));
+
+        Ellipse(hdc,
+            x - length,
+            y + length,
+            x + length,
+            y - length);
+
+        long point = lParam;
+        int cx, cy;
+        cx = point << 8;
+
         EndPaint(hWnd, &ps);
-
-
-            /*
-            PAINTSTRUCT ps;
-            //Dc : device Context = 그리기위한 데이터 핸들
-            //dc의  기본펜은(black), 기본 브러쉬(하얀색)
-            HDC hdc = BeginPaint(hWnd, &ps);
-
-            Rectangle(hdc, 
-                g_ptObjPos.x - g_ptObjScale.x / 2,
-                g_ptObjPos.y - g_ptObjScale.y / 2,
-                g_ptObjPos.x + g_ptObjScale.x/2,
-                g_ptObjPos.y + g_ptObjScale.y/2);
-                */
-
-
-            /*
-
-            HPEN hRedpen = CreatePen(PS_SOLID, 10, RGB(255, 0, 0));
-            HPEN hDefultpen = (HPEN)SelectObject(hdc, hRedpen);
-
-            HBRUSH hBluebrush = CreateSolidBrush(RGB(100, 100, 255));
-            HBRUSH hDefultbrush = (HBRUSH)SelectObject(hdc, hBluebrush);
-
-            Rectangle(hdc, 10, 10, 500, 500);
-
-            DeleteObject(hRedpen);
-            DeleteObject(hBluebrush);
-            */
-
-            //wstring wstr = L"게임 프로그래밍 ";
-            //RECT rt = {};
-            //rt.left = 300;
-            //rt.top = 300;
-            //rt.right = 400;
-            //rt.bottom = 400;
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-            //Rectangle(hdc, 10, 10, 110, 110);
-            //Ellipse(hdc, 50, 50, 150, 150);
-            //TextOut(hdc, 200, 200, wstr.c_str(), wstr.length());
-            //DrawText(hdc, L"helloWorld", 10, &rt, DT_SINGLELINE | DT_RIGHT);
-            //MoveToEx(hdc, 0, 0, nullptr);
-            //LineTo(hdc, 800, 400);
-
-            //연습 문제 1번
-            /*
-            RECT rt{
-                WinposX,
-                WinposY,
-                WinposX + WINSIZEX,
-                WinposY + WINSIZEY
-            };
-            AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true);
-            MoveWindow(hWnd, WinposX, WinposY, rt.right - rt.left, rt.bottom - rt.top,true);
-
-             for (int i = 0; i < WINSIZEX; i += 80)
-            {
-                MoveToEx(hdc, i, 0, nullptr);
-                LineTo(hdc, i, 720);
-            }
-            for (int i = 0; i < WINSIZEY; i += 80)
-            {
-                MoveToEx(hdc, 0, i, nullptr);
-                LineTo(hdc, 1280, i);
-            }
-            */
-
-            //문제 2번
-            /*
-            bool isCircle = false;
-            int line = 100;
-            int num = 100;
-            for (int i = 1; i < 26; i++)
-            {
-                if (isCircle==false)
-                {
-                    int sizeX = num;
-                    int sizeY = line;
-                    Rectangle(hdc, sizeX, sizeY, sizeX+ 50, sizeY + 50);
-                    num += 70;
-                }
-                else
-                {
-                    int sizeX = num;
-                    int sizeY = line;
-                    Ellipse(hdc, sizeX, sizeY, sizeX + 50, sizeY + 50);
-                    num += 70;
-                }
-                if (i % 5 == 0&&i!=0)
-                {
-                    isCircle = !isCircle;
-                    num = 100;
-                    line += 70;
-                }
-            }
-            */
-
-            
         }
             
            
@@ -329,6 +221,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PostQuitMessage(0);
         HideCaret(hWnd);
         DestroyCaret();
+        KillTimer(hWnd, 1);
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);

@@ -32,6 +32,12 @@
     <ClCompile Include="WinAPI.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="메모장.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="예제문제.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc">
