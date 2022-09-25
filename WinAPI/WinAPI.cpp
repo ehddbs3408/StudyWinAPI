@@ -6,7 +6,7 @@
 #include <math.h>
 
 #define MAX_LOADSTRING 100
-
+#define RADIUS 20
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
@@ -22,11 +22,12 @@ POINT g_ptObjScale = {100,100};
 
 float CLength(int x1, int y1, int x2, int y2)
 {
-    return sqrt((float)(() * () + () * ());
+    return sqrt((float)(pow(x2-x1,2) + pow(y2-y1,2)));
 }
 bool InCircle(int x, int y, int mx, int my)
 {
-    if (CLength(x, y, mx, my) < RADIUS) return true;
+    return CLength(x, y, mx, my) < RADIUS;
+    
 }
 
 
@@ -155,40 +156,49 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HDC hdc;
     static int length = 20;
-    static int x = 50 , y=50;
+    static int x , y;
+    static RECT rview;
+    static bool hit;
     switch (message)
     {
-    case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            // 메뉴 선택을 구문 분석합니다:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
-        }
+    case WM_CREATE:
+        hit = false;
+        x = y = 50;
+        GetClientRect(hWnd, &rview);
         break;
+
     case WM_KEYDOWN:
     {
         SetTimer(hWnd, 1, 100, NULL);
+        if (wParam == VK_RETURN)
+        {
+            hit = hit == true ? false : true;
+        }
     }
         break;
+    case WM_LBUTTONDOWN:
+        
+        break;
+    case WM_LBUTTONUP:
+        if (hit)
+        {
+            hit = false;
+            InvalidateRect(hWnd, nullptr, true);
+        }
+        break;
+
     case WM_TIMER:
     {
-
+        if (hit)
+        {
+            x += 40;
+            if (x + 20 > rview.right) x -= 40;
+            InvalidateRect(hWnd, nullptr, true);
+        }
     }
         break;
 
-    case WM_CREATE:
 
-        break;
     case WM_CHAR:
     {
         hdc = GetDC(hWnd);
@@ -202,12 +212,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PAINTSTRUCT ps;
         hdc = BeginPaint(hWnd, &ps);
 
+        if (hit)
+        {
+        HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
+        HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, hBrush);
+
         Ellipse(hdc,
             x - length,
             y + length,
             x + length,
             y - length);
 
+        DeleteObject(hBrush);
+        SelectObject(hdc, oldBrush);
+        }
+
+        else
+        {
+            Ellipse(hdc,
+                x - length,
+                y + length,
+                x + length,
+                y - length);
+        }
         long point = lParam;
         int cx, cy;
         cx = point << 8;
