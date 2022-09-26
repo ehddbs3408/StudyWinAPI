@@ -4,32 +4,31 @@
 #include "framework.h"
 #include "WinAPI.h"
 #include <math.h>
+#include <vector>
 
 #define MAX_LOADSTRING 100
-#define RADIUS 20
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
+
+#define RECT_MAKE(x,y,s) {x - s/2,y-s/2,x+s/2,y+s/2}
+#define RECT_DRAW(rt) Rectangle(hdc,rt.left,rt.top,rt.right,rt.bottom)
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-POINT g_ptObjPos = {500,300};
-POINT g_ptObjScale = {100,100};
-
-float CLength(int x1, int y1, int x2, int y2)
+POINT g_ptObjPos1 = { WINSIZEX / 2,WINSIZEY -30 };
+RECT g_rtBox1;
+vector<RECT> vecBox;
+enum class MOVE_DIR
 {
-    return sqrt((float)(pow(x2-x1,2) + pow(y2-y1,2)));
-}
-bool InCircle(int x, int y, int mx, int my)
-{
-    return CLength(x, y, mx, my) < RADIUS;
-    
-}
-
+    MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN
+};
+MOVE_DIR eMoveDir;
+int fMoveSpeed = 40;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -155,53 +154,41 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     HDC hdc;
-    static int length = 20;
-    static int x , y;
-    static RECT rview;
-    static bool hit;
     switch (message)
     {
     case WM_CREATE:
-        hit = false;
-        x = y = 50;
-        GetClientRect(hWnd, &rview);
-        break;
-
-    case WM_KEYDOWN:
-    {
-        SetTimer(hWnd, 1, 100, NULL);
-        if (wParam == VK_RETURN)
-        {
-            hit = hit == true ? false : true;
-        }
-    }
-        break;
-    case WM_LBUTTONDOWN:
-        
-        break;
-    case WM_LBUTTONUP:
-        if (hit)
-        {
-            hit = false;
-            InvalidateRect(hWnd, nullptr, true);
-        }
+        SetTimer(hWnd, 1, 10, NULL);
+        srand((unsigned int)time(nullptr));
         break;
 
     case WM_TIMER:
     {
-        if (hit)
+        InvalidateRect(hWnd, nullptr, true);
+        g_rtBox1 = RECT_MAKE(g_ptObjPos1.x, g_ptObjPos1.y, 50);
+        RECT rt;
+        rt.left = rand() % (WINSIZEX - 30);
+        rt.right = rt.left + 30;
+        rt.top = -30;
+        rt.bottom = 0;
+        vecBox.push_back(rt); //비가 내리듯  내릴거임
+        for (int i = 0; i < vecBox.size(); i++)
         {
-            x += 40;
-            if (x + 20 > rview.right) x -= 40;
-            InvalidateRect(hWnd, nullptr, true);
+            vecBox[i].top += 10;
+            vecBox[i].bottom += 10;
         }
+        
     }
         break;
 
+    case WM_MOUSEMOVE:
+    {
+    }
+    break;
 
     case WM_CHAR:
     {
         hdc = GetDC(hWnd);
+   
         InvalidateRect(hWnd, nullptr,true);
         ReleaseDC(hWnd, hdc);
     }
@@ -210,35 +197,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_PAINT:
         {
         PAINTSTRUCT ps;
-        hdc = BeginPaint(hWnd, &ps);
-
-        if (hit)
+        hdc = BeginPaint(hWnd, &ps);  
+        for (int i = 0; i < vecBox.size(); i++)
         {
-        HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
-        HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, hBrush);
-
-        Ellipse(hdc,
-            x - length,
-            y + length,
-            x + length,
-            y - length);
-
-        DeleteObject(hBrush);
-        SelectObject(hdc, oldBrush);
+            RECT_DRAW(vecBox[i]);
         }
-
-        else
-        {
-            Ellipse(hdc,
-                x - length,
-                y + length,
-                x + length,
-                y - length);
-        }
-        long point = lParam;
-        int cx, cy;
-        cx = point << 8;
-
         EndPaint(hWnd, &ps);
         }
             
@@ -246,8 +209,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
-        HideCaret(hWnd);
-        DestroyCaret();
         KillTimer(hWnd, 1);
         break;
     default:
