@@ -44,6 +44,9 @@
     <ClCompile Include="충돌처리.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="연습 문제.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc">

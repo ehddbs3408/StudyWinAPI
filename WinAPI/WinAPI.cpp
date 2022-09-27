@@ -20,9 +20,12 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-POINT g_ptObjPos1 = { WINSIZEX / 2,WINSIZEY -30 };
+POINT g_ptObjPos1 = { WINSIZEX / 2,WINSIZEY -85 };
 RECT g_rtBox1;
 vector<RECT> vecBox;
+int  iDelay = 100;
+
+int iScore = 0;
 enum class MOVE_DIR
 {
     MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN
@@ -165,26 +168,57 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
         InvalidateRect(hWnd, nullptr, true);
         g_rtBox1 = RECT_MAKE(g_ptObjPos1.x, g_ptObjPos1.y, 50);
-        RECT rt;
-        rt.left = rand() % (WINSIZEX - 30);
-        rt.right = rt.left + 30;
-        rt.top = -30;
-        rt.bottom = 0;
-        vecBox.push_back(rt); //비가 내리듯  내릴거임
-        for (int i = 0; i < vecBox.size(); i++)
+        if (iDelay > 50)
         {
-            vecBox[i].top += 10;
-            vecBox[i].bottom += 10;
+            RECT rt;
+            rt.left = rand() % (WINSIZEX - 30);
+            rt.right = rt.left + 30;
+            rt.top = -30;
+            rt.bottom = 0;
+            vecBox.push_back(rt); //비가 내리듯  내릴거임
+            iDelay = rand() % 50;
+        }
+        else
+            iDelay++;
+        
+        vector<RECT>::iterator iter;
+        for (iter = vecBox.begin(); iter != vecBox.end(); iter++)
+        {
+            iter->top += 10;
+            iter->bottom += 10;
+            RECT rt;
+            RECT rtIter = *iter;
+            if (iter->top > WINSIZEY)
+            {
+                iScore += 50;
+                vecBox.erase(iter);
+                break;
+            }
+            else if (IntersectRect(&rt, &g_rtBox1, &rtIter))
+            {
+                iScore -= 100;
+                if (iScore < 0)
+                    iScore = 0;
+                vecBox.erase(iter);
+                break;
+            }
         }
         
     }
         break;
-
-    case WM_MOUSEMOVE:
+    case WM_KEYDOWN:
     {
+        switch (wParam)
+        {
+        case VK_LEFT:
+            g_ptObjPos1.x -= (g_rtBox1.left >= 10) ? fMoveSpeed : 0;
+            break;
+        case VK_RIGHT:
+            g_ptObjPos1.x += (g_rtBox1.right < WINSIZEX -  fMoveSpeed) ? fMoveSpeed : 0;
+            break;
+        }
     }
-    break;
-
+        break;
     case WM_CHAR:
     {
         hdc = GetDC(hWnd);
@@ -198,10 +232,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
         PAINTSTRUCT ps;
         hdc = BeginPaint(hWnd, &ps);  
+
+        RECT_DRAW(g_rtBox1);
+
         for (int i = 0; i < vecBox.size(); i++)
         {
             RECT_DRAW(vecBox[i]);
         }
+
+        char BufScore[32];
+        _itoa_s(iScore,BufScore,10);
+        string str = string(BufScore);
+        TextOutA(hdc, 10, 30, str.c_str(), str.length());
         EndPaint(hWnd, &ps);
         }
             

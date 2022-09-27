@@ -1,4 +1,3 @@
 ﻿  WinAPI.cpp
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI\WinAPI.cpp(174,27): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI\WinAPI.cpp(201,27): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI\WinAPI.cpp(238,27): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   WinAPI.vcxproj -> C:\Users\USER\source\repos\WinAPI\StudyWinAPI\Debug\WinAPI.exe
