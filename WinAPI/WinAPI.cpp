@@ -15,14 +15,23 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 
 #define RECT_MAKE(x,y,s) {x - s/2,y-s/2,x+s/2,y+s/2}
 #define RECT_DRAW(rt) Rectangle(hdc,rt.left,rt.top,rt.right,rt.bottom)
+
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
 POINT g_ptObjPos1 = { WINSIZEX / 2,WINSIZEY -85 };
+POINT g_ptMousePos;
 RECT g_rtBox1;
-vector<RECT> vecBox;
+int iLevel = 0;
+struct tagBox
+{
+    RECT rt;
+    float fSpeed;
+};
+vector<tagBox> vecBox;
 int  iDelay = 100;
 
 int iScore = 0;
@@ -163,32 +172,36 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         SetTimer(hWnd, 1, 10, NULL);
         srand((unsigned int)time(nullptr));
         break;
-
+    case WM_MOUSEMOVE:
+    
+        break;
     case WM_TIMER:
     {
         InvalidateRect(hWnd, nullptr, true);
+        iLevel = iScore / 100 + 1;
         g_rtBox1 = RECT_MAKE(g_ptObjPos1.x, g_ptObjPos1.y, 50);
         if (iDelay > 50)
         {
-            RECT rt;
-            rt.left = rand() % (WINSIZEX - 30);
-            rt.right = rt.left + 30;
-            rt.top = -30;
-            rt.bottom = 0;
-            vecBox.push_back(rt); //비가 내리듯  내릴거임
+            tagBox box;
+            box.rt.left = rand() % (WINSIZEX - 30);
+            box.rt.right = box.rt.left + 30;
+            box.rt.top = -30;
+            box.rt.bottom = 0;
+            box.fSpeed = rand() % 11 + 5;
+            vecBox.push_back(box); //비가 내리듯  내릴거임
             iDelay = rand() % 50;
         }
         else
             iDelay++;
         
-        vector<RECT>::iterator iter;
+        vector<tagBox>::iterator iter;
         for (iter = vecBox.begin(); iter != vecBox.end(); iter++)
         {
-            iter->top += 10;
-            iter->bottom += 10;
+            iter->rt.top += iter->fSpeed;
+            iter->rt.bottom += iter->fSpeed;
             RECT rt;
-            RECT rtIter = *iter;
-            if (iter->top > WINSIZEY)
+            RECT rtIter = iter->rt;
+            if (iter->rt.top > WINSIZEY)
             {
                 iScore += 50;
                 vecBox.erase(iter);
@@ -237,14 +250,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         for (int i = 0; i < vecBox.size(); i++)
         {
-            RECT_DRAW(vecBox[i]);
+            RECT_DRAW(vecBox[i].rt);
         }
 
         char BufScore[32];
+        wchar_t Buflevel[32];
+
         _itoa_s(iScore,BufScore,10);
         string str = string(BufScore);
         TextOutA(hdc, 10, 30, str.c_str(), str.length());
+
+        swprintf_s(Buflevel, L"레벨: %d", iLevel);
+        TextOut(hdc, 10, 10, Buflevel, wcslen(Buflevel));
+
         EndPaint(hWnd, &ps);
+
+        
         }
             
            
