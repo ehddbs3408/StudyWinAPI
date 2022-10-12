@@ -22,25 +22,7 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-POINT g_ptObjPos1 = { WINSIZEX / 2,WINSIZEY -85 };
-POINT g_ptMousePos;
-RECT g_rtBox1;
-int iLevel = 0;
-struct tagBox
-{
-    RECT rt;
-    float fSpeed;
-};
-vector<tagBox> vecBox;
-int  iDelay = 100;
-
-int iScore = 0;
-enum class MOVE_DIR
-{
-    MOVE_LEFT, MOVE_RIGHT, MOVE_UP, MOVE_DOWN
-};
-MOVE_DIR eMoveDir;
-int fMoveSpeed = 40;
+POINT sizePoint = { 200,100 };
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -131,7 +113,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 
    HWND hWnd = CreateWindowW(szWindowClass, 
-       szTitle,
+       PROGRAM_TITLE,
        WS_OVERLAPPEDWINDOW,
        WinposX,            //윈도우 화면 좌측 상단 죄표 x
        WinposY,                                     //윈도우 화면 좌측 상단 죄표 y
@@ -169,67 +151,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_CREATE:
-        SetTimer(hWnd, 1, 10, NULL);
-        srand((unsigned int)time(nullptr));
         break;
     case WM_MOUSEMOVE:
     
         break;
-    case WM_TIMER:
-    {
-        InvalidateRect(hWnd, nullptr, true);
-        iLevel = iScore / 100 + 1;
-        g_rtBox1 = RECT_MAKE(g_ptObjPos1.x, g_ptObjPos1.y, 50);
-        if (iDelay > 50)
-        {
-            tagBox box;
-            box.rt.left = rand() % (WINSIZEX - 30);
-            box.rt.right = box.rt.left + 30;
-            box.rt.top = -30;
-            box.rt.bottom = 0;
-            box.fSpeed = rand() % 11 + 5;
-            vecBox.push_back(box); //비가 내리듯  내릴거임
-            iDelay = rand() % 50;
-        }
-        else
-            iDelay++;
-        
-        vector<tagBox>::iterator iter;
-        for (iter = vecBox.begin(); iter != vecBox.end(); iter++)
-        {
-            iter->rt.top += iter->fSpeed;
-            iter->rt.bottom += iter->fSpeed;
-            RECT rt;
-            RECT rtIter = iter->rt;
-            if (iter->rt.top > WINSIZEY)
-            {
-                iScore += 50;
-                vecBox.erase(iter);
-                break;
-            }
-            else if (IntersectRect(&rt, &g_rtBox1, &rtIter))
-            {
-                iScore -= 100;
-                if (iScore < 0)
-                    iScore = 0;
-                vecBox.erase(iter);
-                break;
-            }
-        }
-        
-    }
-        break;
     case WM_KEYDOWN:
     {
-        switch (wParam)
-        {
-        case VK_LEFT:
-            g_ptObjPos1.x -= (g_rtBox1.left >= 10) ? fMoveSpeed : 0;
-            break;
-        case VK_RIGHT:
-            g_ptObjPos1.x += (g_rtBox1.right < WINSIZEX -  fMoveSpeed) ? fMoveSpeed : 0;
-            break;
-        }
+
     }
         break;
     case WM_CHAR:
@@ -246,23 +174,32 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PAINTSTRUCT ps;
         hdc = BeginPaint(hWnd, &ps);  
 
-        RECT_DRAW(g_rtBox1);
+        HPEN hPen = CreatePen(1, 10, RGB(255, 100, 100));
+        HPEN defaultPen = (HPEN)SelectObject(hdc, hPen);
 
-        for (int i = 0; i < vecBox.size(); i++)
+        HBRUSH hBrush = CreateSolidBrush(RGB(255, 255, 100));
+        HBRUSH defaultBrush = (HBRUSH)SelectObject(hdc, hBrush);
+
+        bool drawBox = true;
+        int size = 70;
+        int x, y;
+        for (int i = 0; i < 25; i++)
         {
-            RECT_DRAW(vecBox[i].rt);
+            x = sizePoint.x + (size * (i % 5));
+            y = sizePoint.y + (size * (i / 5));
+            if (drawBox)
+            {
+                Rectangle(hdc, x, y, x + 50, y + 50);
+            }
+            else
+            {
+                Ellipse(hdc, x, y, x + 50, y + 50);
+            }
+            drawBox = !drawBox;
         }
 
-        char BufScore[32];
-        wchar_t Buflevel[32];
-
-        _itoa_s(iScore,BufScore,10);
-        string str = string(BufScore);
-        TextOutA(hdc, 10, 30, str.c_str(), str.length());
-
-        swprintf_s(Buflevel, L"레벨: %d", iLevel);
-        TextOut(hdc, 10, 10, Buflevel, wcslen(Buflevel));
-
+        DeleteObject(hPen);
+        DeleteObject(hBrush);
         EndPaint(hWnd, &ps);
 
         
@@ -272,7 +209,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
-        KillTimer(hWnd, 1);
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
