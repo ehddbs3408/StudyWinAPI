@@ -1,0 +1,9 @@
+﻿  Core.h
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\Core.h(5,1): error C2011: 'Core': 'class' 형식 재정의
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\define.h(3): message : 'Core' 선언을 참조하십시오.
+  keyMgr.cpp
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\pch.h(2,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
+  WinAPI_framework.cpp
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\Core.h(5,1): error C2011: 'Core': 'class' 형식 재정의
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\define.h(3): message : 'Core' 선언을 참조하십시오.
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\pch.h(2,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.

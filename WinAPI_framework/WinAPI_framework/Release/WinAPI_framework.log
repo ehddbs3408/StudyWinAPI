@@ -1,0 +1,11 @@
+﻿  Core.cpp
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\pch.h(2,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\Core.h(3,1): error C2011: 'Core': 'class' 형식 재정의
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\define.h(3): message : 'Core' 선언을 참조하십시오.
+  Core.h
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\Core.h(5,14): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\Core.h(5,14): warning C4183: 'SINGLE': 반환 형식이 없습니다. 'int'를 반환하는 멤버 함수로 간주됩니다.
+  WinAPI_framework.cpp
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\pch.h(2,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\Core.h(3,1): error C2011: 'Core': 'class' 형식 재정의
+C:\Users\USER\source\repos\WinAPI_framework\WinAPI_framework\define.h(3): message : 'Core' 선언을 참조하십시오.
