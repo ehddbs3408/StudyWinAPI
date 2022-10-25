@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "BWindow.h"
+#include "Resource.h"
+#include "Core.h"
 
-BWindow::BWindow()
+BWindow::BWindow() :m_hInstance(0), m_hWnd(0)
 {
-
+    
 }
 
 BWindow::~BWindow()
@@ -15,33 +17,8 @@ LRESULT BWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_COMMAND:
-    {
-        int wmId = LOWORD(wParam);
-        // 메뉴 선택을 구문 분석합니다:
-        switch (wmId)
-        {
-        case IDM_ABOUT:
-            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-            break;
-        case IDM_EXIT:
-            DestroyWindow(hWnd);
-            break;
-        default:
-            return DefWindowProc(hWnd, message, wParam, lParam);
-        }
-    }
-    break;
-    case WM_PAINT:
-    {
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hWnd, &ps);
-        // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-        EndPaint(hWnd, &ps);
-    }
-    break;
     case WM_DESTROY:
-        PostQuitMessage(0);
+        PostQuitMessage(0); //WM_QUIT
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -56,6 +33,13 @@ int BWindow::Run(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow)
     this->WindowCreate();
     this->WindowShow(nCmdShow);
     this->WindowUpdate();
+
+    if (FAILED(Core::GetInst()->init(m_hWnd, new POINT{ 860,120 })))
+    {
+        MessageBox(m_hWnd, L"Core 객체 초기화 실패",  L"ERROR", MB_OK);
+        return FALSE;
+    }
+
     return this->Messageloop();
 }
 
@@ -73,8 +57,8 @@ ATOM BWindow::MyRegisterClass()
     wcex.hIcon = LoadIcon(m_hInstance, MAKEINTRESOURCE(IDI_WINAPIFRAMEWORK));
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_WINAPIFRAMEWORK);
-    wcex.lpszClassName = szWindowClass;
+    wcex.lpszMenuName = nullptr;
+    wcex.lpszClassName = WINDOW_NAME;
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
@@ -82,8 +66,8 @@ ATOM BWindow::MyRegisterClass()
 
 void BWindow::WindowCreate()
 {
-    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+    HWND hWnd = CreateWindowW(WINDOW_NAME, L"1반 gameframework", WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, m_hInstance, nullptr);
 }
 
 void BWindow::WindowShow(int nCmdShow)
@@ -99,6 +83,7 @@ void BWindow::WindowUpdate()
 int BWindow::Messageloop()
 {
     MSG msg;
+    memset(&msg, 0, sizeof(msg));
 
     while (true)
     {
@@ -114,7 +99,7 @@ int BWindow::Messageloop()
         }
         else //게임루프가 돈다
         {
-
+            Core::GetInst()->Progress();
         }
 
     }

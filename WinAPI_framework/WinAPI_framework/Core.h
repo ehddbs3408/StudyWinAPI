@@ -1,11 +1,18 @@
 #pragma once
-class Core
+#include "BWindow.h"
+class Core : public BWindow
 {
 public:
 	SINGLE(Core);
 private:
 	Core();
 	~Core();
+private:
+	POINT m_ptResolutiion;
+	HDC m_hDC; //메인 윈도우
+public:
+	int init(HWND _hWnd,POINT _ptResolution);
+	void Progress();
 };
 
 //class Core

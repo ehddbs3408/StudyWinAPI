@@ -29,6 +29,9 @@
     <Filter Include="Engine\02.Core\Window">
       <UniqueIdentifier>{e73218bb-bfd0-4617-ad16-264a2c4b863a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04.Object">
+      <UniqueIdentifier>{f0f26c77-2345-462c-9714-67fd6df82cbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -61,6 +64,9 @@
     <ClInclude Include="BWindow.h">
       <Filter>Engine\02.Core\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Engine\04.Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_framework.rc">
@@ -88,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="BWindow.cpp">
       <Filter>Engine\02.Core\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Engine\04.Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

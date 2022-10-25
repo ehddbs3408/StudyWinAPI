@@ -4,13 +4,17 @@
 #include "pch.h"
 #include "framework.h"
 #include "WinAPI_framework.h"
+#include "BWindow.h"
 #include "Core.h"
 #define MAX_LOADSTRING 100
 
-int APIENTRY wWinMain()
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
+    _In_opt_ HINSTANCE hPrevInstance,
+    _In_ LPWSTR    lpCmdLine,
+    _In_ int       nCmdShow)
 {
 	BWindow game;
-	game
+	game.Run(hInstance, lpCmdLine, nCmdShow);
 }
 
 

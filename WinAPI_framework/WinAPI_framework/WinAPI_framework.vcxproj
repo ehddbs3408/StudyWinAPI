@@ -146,6 +146,7 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="keyMgr.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="BWindow.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="keyMgr.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="WinAPI_framework.cpp" />
   </ItemGroup>
