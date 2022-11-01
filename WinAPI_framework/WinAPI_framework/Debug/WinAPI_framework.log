@@ -1,8 +1,0 @@
-﻿  BWindow.cpp
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\WinAPI_framework\pch.h(2,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\WinAPI_framework\BWindow.cpp(37,9): error C2059: 구문 오류: ')'
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\WinAPI_framework\BWindow.cpp(38,5): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
-  Core.cpp
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\WinAPI_framework\pch.h(2,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-  WinAPI_framework.cpp
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\WinAPI_framework\pch.h(2,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
