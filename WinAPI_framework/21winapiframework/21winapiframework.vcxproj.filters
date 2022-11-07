@@ -29,6 +29,9 @@
     <Filter Include="Engine\04. Object">
       <UniqueIdentifier>{e4b788c2-b172-4adc-b78f-93c45ddda088}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05.Scene">
+      <UniqueIdentifier>{47b46df4-bb30-4beb-b599-7365b8591886}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="21winapiframework.h">
@@ -67,6 +70,9 @@
     <ClInclude Include="Vec2.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Engine\05.Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="21winapiframework.rc">
@@ -100,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="Vec2.cpp">
       <Filter>Engine\01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Engine\05.Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

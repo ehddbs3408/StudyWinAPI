@@ -14,10 +14,10 @@ private:
 	Core();
 	~Core();
 private:
-	POINT			m_ptResolution; // 메인 윈도우 해상도
-	HDC				m_hDC;			// 메인 윈도우에 Draw할 DC
-	HDC				m_menDC;		//사본용 DC
-	HBITMAP		m_hBit;			//사본용 비트맵
+	POINT	m_ptResolution; // 메인 윈도우 해상도
+	HDC		m_hDC;			// 메인 윈도우에 Draw할 DC
+	HDC		m_memDC;		// 사본용 DC
+	HBITMAP	m_hBit;			// 사본용 비트맵
 public:
 	int		Init(HWND _hWnd, POINT _ptResolution);
 	void    Progress();
