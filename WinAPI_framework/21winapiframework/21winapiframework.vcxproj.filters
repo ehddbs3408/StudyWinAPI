@@ -32,6 +32,12 @@
     <Filter Include="Engine\05.Scene">
       <UniqueIdentifier>{47b46df4-bb30-4beb-b599-7365b8591886}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\SceneMgr">
+      <UniqueIdentifier>{aa8b1295-ff27-434c-809b-fe1448cc0d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.Scene\Scene_Start">
+      <UniqueIdentifier>{68b7e796-a7df-41f5-9769-f1651891f275}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="21winapiframework.h">
@@ -73,6 +79,12 @@
     <ClInclude Include="Scene.h">
       <Filter>Engine\05.Scene</Filter>
     </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Start.h">
+      <Filter>Engine\05.Scene\Scene_Start</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="21winapiframework.rc">
@@ -109,6 +121,12 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Engine\05.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Start.cpp">
+      <Filter>Engine\05.Scene\Scene_Start</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

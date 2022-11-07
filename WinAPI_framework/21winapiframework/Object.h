@@ -13,6 +13,6 @@ public:
 	const Vec2& GetScale() { return m_vScale; }
 public:
 	Object();
-	~Object();
+	virtual ~Object();
 };
 

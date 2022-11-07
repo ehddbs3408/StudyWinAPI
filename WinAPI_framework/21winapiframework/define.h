@@ -40,3 +40,9 @@ enum class GROUP_TYPE
 
 	END = 30,
 };
+enum class SCENE_TYPE
+{
+	START, SCENE_01,
+	SCENE_02,TOOL,
+	END
+};
