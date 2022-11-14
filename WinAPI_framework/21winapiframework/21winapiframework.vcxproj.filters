@@ -85,6 +85,12 @@
     <ClInclude Include="Scene_Start.h">
       <Filter>Engine\05.Scene\Scene_Start</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Engine\04. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Engine\04. Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="21winapiframework.rc">
@@ -127,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="Scene_Start.cpp">
       <Filter>Engine\05.Scene\Scene_Start</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Engine\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Engine\04. Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

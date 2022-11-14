@@ -14,5 +14,8 @@ public:
 public:
 	Object();
 	virtual ~Object();
+public:
+	virtual void Update() abstract;
+	virtual void Render(HDC _dc);
 };
 

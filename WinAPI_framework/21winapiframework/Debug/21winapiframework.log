@@ -1,3 +1,6 @@
 ﻿  Core.cpp
-  KeyMgr.cpp
+  Object.cpp
+  Player.cpp
+  Scene.cpp
+  Scene_Start.cpp
   21winapiframework.vcxproj -> C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\Debug\21winapiframework.exe
