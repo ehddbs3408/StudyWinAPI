@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "KeyMgr.h"
 #include "Core.h"
-
 int g_arrVK[(int)KEY::LAST] =
 {
 	VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN,
@@ -32,7 +31,7 @@ int g_arrVK[(int)KEY::LAST] =
 	'N',
 	'M',
 	VK_MENU, VK_LSHIFT, VK_CONTROL, VK_SPACE,
-	VK_RETURN, VK_ESCAPE,
+	VK_RETURN, VK_ESCAPE
 };
 
 KeyMgr::KeyMgr()
@@ -53,30 +52,38 @@ void KeyMgr::Init()
 
 void KeyMgr::Update()
 {
-	//HWND hMainWnd = Core::GetInst()->GetInstanceHandle();
+	// 내 창(윈도우)의 포커싱을 알고싶은거야.
+	//HWND hMainWnd = Core::GetInst()->GetWndHandle();
 	HWND hWnd = GetFocus();
-	if (nullptr != hWnd)
+	// 포커싱 상태. 띄움.
+	if(nullptr != hWnd)
 	{
 		for (int i = 0; i < (int)KEY::LAST; i++)
 		{
+			// 키가 눌렸어.
 			if (GetAsyncKeyState(g_arrVK[i]))
 			{
+				// 이전에 눌렸어.
 				if (m_vecKey[i].bPrevCheck)
 				{
 					m_vecKey[i].eState = KEY_STATE::HOLD;
 				}
+				// 이전에 안눌렸어.
 				else
 				{
 					m_vecKey[i].eState = KEY_STATE::TAP;
 				}
 				m_vecKey[i].bPrevCheck = true;
 			}
+			// 키가 안눌렸어.
 			else
 			{
+				// 이전에 눌려있었어.
 				if (m_vecKey[i].bPrevCheck)
 				{
 					m_vecKey[i].eState = KEY_STATE::AWAY;
 				}
+				//이전에도 안눌렸어.
 				else
 				{
 					m_vecKey[i].eState = KEY_STATE::NONE;
@@ -85,6 +92,7 @@ void KeyMgr::Update()
 			}
 		}
 	}
+	// 포커싱 해제. alt + tab
 	else
 	{
 		for (int i = 0; i < (int)KEY::LAST; i++)
@@ -101,7 +109,6 @@ void KeyMgr::Update()
 			}
 		}
 	}
-	
 }
 
 

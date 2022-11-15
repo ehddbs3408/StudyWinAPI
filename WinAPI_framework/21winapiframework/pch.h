@@ -4,4 +4,5 @@
 #include "Vec2.h"
 #include "framework.h"
 #include <vector>
+#include <string>
 using namespace std;

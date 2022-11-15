@@ -11,6 +11,11 @@
 
 #define fDT TimeMgr::GetInst()->GetfDT()
 #define DT TimeMgr::GetInst()->GetDT()
+#define KEY_CHECK(key, state) KeyMgr::GetInst()->GetKey(key) == state
+#define KEY_HOLD(key) KEY_CHECK(key, KEY_STATE::HOLD)
+#define KEY_TAP(key) KEY_CHECK(key, KEY_STATE::TAP)
+#define KEY_AWAY(key) KEY_CHECK(key, KEY_STATE::AWAY)
+#define KEY_NONE(key) KEY_CHECK(key, KEY_STATE::NONE)
 
 enum class KEY_STATE
 {
@@ -40,9 +45,10 @@ enum class GROUP_TYPE
 
 	END = 30,
 };
+
 enum class SCENE_TYPE
 {
 	START, SCENE_01,
-	SCENE_02,TOOL,
+	SCENE_02, TOOL,
 	END
 };

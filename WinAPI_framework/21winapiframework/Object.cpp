@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "Object.h"
-#include "KeyMgr.h"
-#include "TimeMgr.h"
 
 Object::Object()
 	: m_vPos{}
@@ -12,6 +10,7 @@ Object::Object()
 Object::~Object()
 {
 }
+
 
 void Object::Render(HDC _dc)
 {

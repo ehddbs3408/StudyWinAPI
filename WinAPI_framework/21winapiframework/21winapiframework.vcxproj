@@ -142,6 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="21winapiframework.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="BWindow.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="define.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BWindow.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="KeyMgr.cpp" />

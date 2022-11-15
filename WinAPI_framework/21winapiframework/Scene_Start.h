@@ -7,7 +7,7 @@ public:
     Scene_Start();
     ~Scene_Start();
 public:
-    void Enter() override;
-    void Exit() override;
+    void    Enter() override;
+    void    Exit() override;
 };
 

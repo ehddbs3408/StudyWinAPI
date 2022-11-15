@@ -10,5 +10,6 @@ public:
 	Vec2(int _x, int _y);
 	Vec2(long _x, long _y);
 	Vec2(float _x, float _y);
+	Vec2(POINT _pt);
 };
 

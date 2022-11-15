@@ -29,6 +29,8 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	m_hBit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
 	SelectObject(m_memDC, m_hBit);
 
+
+	// =====Mgr ÃÊ±âÈ­=====
 	TimeMgr::GetInst()->Init();
 	KeyMgr::GetInst()->Init();
 	SceneMgr::GetInst()->Init();
@@ -50,27 +52,18 @@ void Core::Progress()
 
 void Core::Update()
 {
-	// =====Mgr Update====
+	// ==== Mgr Update ====
 	TimeMgr::GetInst()->Update();
 	KeyMgr::GetInst()->Update();
 	SceneMgr::GetInst()->Update();
-
-	//Vec2 vPos = g_obj.GetPos();
-	//
-	//g_obj.SetPos(vPos);
 }
 
 void Core::Render()
 {
-
 	PatBlt(m_memDC, 0,0, m_ptResolution.x, m_ptResolution.y, WHITENESS);
 
 	SceneMgr::GetInst()->Render(m_memDC);
 
-	//Vec2 vPos = g_obj.GetPos();
-	//Vec2 vScale = g_obj.GetScale();
-//	InvalidateRect()
-	
 	BitBlt(m_hDC, 0,0, m_ptResolution.x, m_ptResolution.y
 	,m_memDC, 0,0,SRCCOPY);
 }

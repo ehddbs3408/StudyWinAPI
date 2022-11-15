@@ -29,14 +29,26 @@
     <Filter Include="Engine\04. Object">
       <UniqueIdentifier>{e4b788c2-b172-4adc-b78f-93c45ddda088}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05.Scene">
-      <UniqueIdentifier>{47b46df4-bb30-4beb-b599-7365b8591886}</UniqueIdentifier>
+    <Filter Include="Engine\05. Scene">
+      <UniqueIdentifier>{9db0a657-f89b-4a76-8132-400660d96956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Scene\NewFilter2">
+      <UniqueIdentifier>{d6b5c60d-3c9b-4c17-9d33-aace7ec98c1e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\03. Manager\SceneMgr">
-      <UniqueIdentifier>{aa8b1295-ff27-434c-809b-fe1448cc0d05}</UniqueIdentifier>
+      <UniqueIdentifier>{4534dfa4-e3f1-4b01-8e4f-1ea960f8e715}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05.Scene\Scene_Start">
-      <UniqueIdentifier>{68b7e796-a7df-41f5-9769-f1651891f275}</UniqueIdentifier>
+    <Filter Include="Engine\05. Scene\Scene_Start">
+      <UniqueIdentifier>{a0402307-2915-4094-b4d8-45c0468a7a80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\Player">
+      <UniqueIdentifier>{9697aca2-0bb3-425c-9b2a-59686280d44e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\Monster">
+      <UniqueIdentifier>{103dffcf-c530-496a-bc76-0042d6a4b7dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\Bullet">
+      <UniqueIdentifier>{7600d195-ab74-4fa4-8013-be1629b6f969}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,19 +89,22 @@
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Engine\05.Scene</Filter>
+      <Filter>Engine\05. Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneMgr.h">
       <Filter>Engine\03. Manager\SceneMgr</Filter>
     </ClInclude>
     <ClInclude Include="Scene_Start.h">
-      <Filter>Engine\05.Scene\Scene_Start</Filter>
+      <Filter>Engine\05. Scene\Scene_Start</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Engine\04. Object</Filter>
+      <Filter>Engine\04. Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Engine\04. Object</Filter>
+      <Filter>Engine\04. Object\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Engine\04. Object\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -126,19 +141,22 @@
       <Filter>Engine\01. Header</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>Engine\05.Scene</Filter>
+      <Filter>Engine\05. Scene</Filter>
     </ClCompile>
     <ClCompile Include="SceneMgr.cpp">
       <Filter>Engine\03. Manager\SceneMgr</Filter>
     </ClCompile>
     <ClCompile Include="Scene_Start.cpp">
-      <Filter>Engine\05.Scene\Scene_Start</Filter>
+      <Filter>Engine\05. Scene\Scene_Start</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Engine\04. Object</Filter>
+      <Filter>Engine\04. Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>Engine\04. Object</Filter>
+      <Filter>Engine\04. Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Engine\04. Object\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

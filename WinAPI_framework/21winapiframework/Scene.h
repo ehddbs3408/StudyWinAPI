@@ -1,31 +1,32 @@
 #pragma once
-
 class Object;
-//#include "Object.h"
 class Scene
 {
 public:
 	Scene();
 	virtual ~Scene();
 private:
-	//Object m_obj;
-	vector<Object*>		m_vecOb[(UINT)GROUP_TYPE::END];
-	wstring						m_strName;
-protected:
+//	Object* m_obj; // x
+	vector<Object*> m_vecObj[(UINT)GROUP_TYPE::END];
+	wstring			m_strName;
+	//virtual void Enter() = 0;
+public:
 	void AddObject(Object* _pObj, GROUP_TYPE _eType)
 	{
-		m_vecOb[(UINT)_eType].push_back(_pObj);
+		m_vecObj[(UINT)_eType].push_back(_pObj);
 	}
 public:
 	virtual void Enter() abstract;
 	virtual void Exit() abstract;
+
+
 public:
-	void		SetName(const wstring& _strName)
+	void	SetName(const wstring& _strName)
 	{
 		m_strName = _strName;
 	}
 	const wstring& GetName() { return m_strName; }
-	void Update();
-	void Render(HDC _dc);
+	void	Update();
+	void	Render(HDC _dc);
 };
 

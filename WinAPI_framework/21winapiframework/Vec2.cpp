@@ -26,3 +26,9 @@ Vec2::Vec2(float _x, float _y)
 	, y(_y)
 {
 }
+
+Vec2::Vec2(POINT _pt)
+	: x((float)_pt.x)
+	, y((float)_pt.y)
+{
+}

@@ -27,6 +27,7 @@ private:
 public:
 	const HWND& GetWndHandle() { return m_hWnd; }
 	const HINSTANCE& GetInstanceHandle() { return m_hInstance; }
+	POINT& GetResolution() { return m_ptResolution; }
 };
 // ½Ì±ÛÅæ 1¹ø ¹æ¹ý
 //class Core
