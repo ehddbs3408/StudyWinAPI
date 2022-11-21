@@ -11,5 +11,7 @@ public:
 	Vec2(long _x, long _y);
 	Vec2(float _x, float _y);
 	Vec2(POINT _pt);
+	Vec2& Normalize();
+	float Length();
 };
 

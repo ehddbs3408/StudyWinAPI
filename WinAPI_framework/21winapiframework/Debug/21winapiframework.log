@@ -1,3 +1,16 @@
 ﻿  Bullet.cpp
+C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\21winapiframework\Bullet.cpp(9,1): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+  BWindow.cpp
+  Core.cpp
+  KeyMgr.cpp
+  main.cpp
+  Monster.cpp
+  Object.cpp
   Player.cpp
-  21winapiframework.vcxproj -> C:\Users\USER\Desktop\21winapiframework\Debug\21winapiframework.exe
+  Scene.cpp
+  SceneMgr.cpp
+  Scene_Start.cpp
+  TimeMgr.cpp
+  Vec2.cpp
+C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\21winapiframework\Vec2.cpp(37,13): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  21winapiframework.vcxproj -> C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\Debug\21winapiframework.exe

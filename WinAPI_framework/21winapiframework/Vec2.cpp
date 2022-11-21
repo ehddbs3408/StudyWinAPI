@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Vec2.h"
-
+#include <assert.h>
 Vec2::Vec2()
 {
 }
@@ -32,3 +32,19 @@ Vec2::Vec2(POINT _pt)
 	, y((float)_pt.y)
 {
 }
+float Vec2::Length()
+{
+	return sqrt(x * x + y * y);
+}
+
+Vec2& Vec2::Normalize()
+{
+	// TODO: 여기에 return 문을 삽입합니다.
+	float fLen = Length();
+	assert(fLen != 0.f);
+	x /= fLen;
+	y /= fLen;
+	return *this;
+}
+
+

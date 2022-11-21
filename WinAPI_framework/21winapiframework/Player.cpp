@@ -43,7 +43,8 @@ void Player::CreateBullet()
 	Bullet* pBullet = new Bullet;
 	pBullet->SetPos(vBulletPos);
 	pBullet->SetScale(Vec2(25.f, 25.f));
-	pBullet->SetDir(true);
+//	pBullet->SetDir(true);
+	pBullet->SetDir(Vec2(-1.f, -7.f));
 	Scene* pCurScene = SceneMgr::GetInst()->GetCurScene();
 	pCurScene->AddObject(pBullet, GROUP_TYPE::BULLET);
 }

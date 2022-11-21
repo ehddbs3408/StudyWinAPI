@@ -3,7 +3,9 @@
 #include "TimeMgr.h"
 
 Bullet::Bullet()
-	: m_fDir(1.f)
+	: m_fTheta(M_PI / 4.f)
+	, m_vDir(Vec2(1.f,1.f))
+	 
 {
 }
 
@@ -14,8 +16,11 @@ Bullet::~Bullet()
 void Bullet::Update()
 {
 	Vec2 vPos = GetPos();
-	vPos.x += 600.f * fDT;
-	vPos.y += 600.f * fDT * m_fDir;
+	//vPos.x += 600.f * cosf(m_fTheta) * fDT;
+	//vPos.y -= 600.f * sinf(m_fTheta) * fDT;
+	vPos.x += 600.f * m_vDir.x * fDT;
+	vPos.y += 600.f * m_vDir.y * fDT;
+
 	SetPos(vPos);
 }
 
