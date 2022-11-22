@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "Monster.h"
 #include "Core.h"
+#include "Image.h"
+#include "PathMgr.h"
 Scene_Start::Scene_Start()
 {
 }
@@ -14,6 +16,9 @@ Scene_Start::~Scene_Start()
 
 void Scene_Start::Enter()
 {
+	// Image 로딩
+	
+
 	Vec2 vResolution = Core::GetInst()->GetResolution();
 	// Object 생성.
 	Object* pObj = new Player;

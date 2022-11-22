@@ -4,6 +4,8 @@
 #include "TimeMgr.h"
 #include "KeyMgr.h"
 #include "SceneMgr.h"
+#include "PathMgr.h"
+
 Core::Core()
 	: m_hDC(0)
 	, m_ptResolution{}
@@ -33,6 +35,7 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	// =====Mgr 초기화=====
 	TimeMgr::GetInst()->Init();
 	KeyMgr::GetInst()->Init();
+	PathMgr::GetInst()->Init();
 	SceneMgr::GetInst()->Init();
 
 	// 해상도 맞게 조절
@@ -66,4 +69,8 @@ void Core::Render()
 
 	BitBlt(m_hDC, 0,0, m_ptResolution.x, m_ptResolution.y
 	,m_memDC, 0,0,SRCCOPY);
+
+	// 제목에 dt 띄우는 render()
+	//	TimeMgr::GetInst()->Render();
+
 }

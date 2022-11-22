@@ -1,0 +1,25 @@
+﻿  BWindow.cpp
+  Bullet.cpp
+C:\Users\USER\Desktop\21winapiframework\21winapiframework\Bullet.cpp(9,1): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+  Core.cpp
+  Image.cpp
+  KeyMgr.cpp
+  Monster.cpp
+  Object.cpp
+  PathMgr.cpp
+  Player.cpp
+  Res.cpp
+  Scene.cpp
+  SceneMgr.cpp
+  Scene_Start.cpp
+  Sound.cpp
+  TimeMgr.cpp
+  Vec2.cpp
+C:\Users\USER\Desktop\21winapiframework\21winapiframework\Vec2.cpp(37,13): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  main.cpp
+  코드를 생성하고 있습니다.
+  1 of 281 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  코드를 생성했습니다.
+  21winapiframework.vcxproj -> C:\Users\USER\Desktop\21winapiframework\Output\bin\21winapiframework.exe

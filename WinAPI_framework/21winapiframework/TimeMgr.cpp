@@ -35,11 +35,15 @@ void TimeMgr::Update()
 
 	m_llPrevCount = m_llCurCount;
 	// ... = 1. /m_dDT;
+}
+
+void TimeMgr::Render()
+{
 	++m_iCallCount; // 호출횟수 누적
 
 	m_dAcc += m_dDT;
 
-	if (m_dAcc>=1.) // 1초가 지난거잖아.
+	if (m_dAcc >= 1.) // 1초가 지난거잖아.
 	{
 		m_iFPS = m_iCallCount;
 		m_dAcc = 0;

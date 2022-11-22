@@ -1,15 +1,19 @@
 #pragma once
 #include "Res.h"
 class Image :
-	public Res
+    public Res
 {
 private:
-	HBITMAP m_hBit;
-	HDC			m_hDC;
+    HBITMAP m_hBit;
+    HDC     m_hDC;
+    BITMAP  m_bitInfo;
 public:
-	Image();
-	~Image();
+    Image();
+    ~Image();
 public:
-	void Load(const wstring& _strFilePath);
+    void Load(const wstring& _strFilePath);
+    UINT GetWidth() { return m_bitInfo.bmWidth; }
+    UINT GetHeight() { return m_bitInfo.bmHeight; }
+    HDC GetDC() { return m_hDC; }
 };
 

@@ -24,5 +24,6 @@ public:
 	//int b = QueryPerformanceFrequency();
 	void		Init();
 	void		Update();
+	void		Render();
 };
 

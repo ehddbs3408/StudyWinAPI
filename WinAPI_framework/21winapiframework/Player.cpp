@@ -5,6 +5,22 @@
 #include "Bullet.h"
 #include "SceneMgr.h"
 #include "Scene.h"
+#include "Image.h"
+#include "PathMgr.h"
+Player::Player()
+	: m_pImage(nullptr)
+{
+	m_pImage = new Image;
+	wstring strFilePath = PathMgr::GetInst()->GetResPath();
+	strFilePath += L"Image\\planem.bmp";
+	m_pImage->Load(strFilePath);
+}
+Player::~Player()
+{
+	if (nullptr != m_pImage)
+		delete m_pImage;
+}
+
 void Player::Update()
 {
 	Vec2 vPos = GetPos();
@@ -36,6 +52,7 @@ void Player::Update()
 	}
 	SetPos(vPos);
 }
+
 void Player::CreateBullet()
 {
 	Vec2 vBulletPos = GetPos();
@@ -44,10 +61,28 @@ void Player::CreateBullet()
 	pBullet->SetPos(vBulletPos);
 	pBullet->SetScale(Vec2(25.f, 25.f));
 //	pBullet->SetDir(true);
-	pBullet->SetDir(Vec2(-1.f, -7.f));
+	pBullet->SetDir(Vec2(-10.f, -15.f));
 	Scene* pCurScene = SceneMgr::GetInst()->GetCurScene();
 	pCurScene->AddObject(pBullet, GROUP_TYPE::BULLET);
 }
-//void Player::Render(HDC _dc)
-//{
-//}
+void Player::Render(HDC _dc)
+{
+	int Width  = (int)m_pImage->GetWidth();
+	int Height = (int)m_pImage->GetHeight();
+	Vec2 vPos = GetPos();
+
+	//BitBlt(_dc
+	//	, (int)(vPos.x - (float)(Width / 2))
+	//	, (int)(vPos.y - (float)(Height / 2))
+	//    , Width, Height
+	//	, m_pImage->GetDC()
+	//    , 0,0,SRCCOPY);
+	TransparentBlt(_dc
+		, (int)(vPos.x - (float)(Width / 2))
+		, (int)(vPos.y - (float)(Height / 2))
+		, Width, Height
+		, m_pImage->GetDC()
+		, 0, 0, Width, Height,
+		RGB(255,0,255));
+
+}

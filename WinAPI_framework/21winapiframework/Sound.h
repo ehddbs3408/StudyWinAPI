@@ -1,5 +1,7 @@
 #pragma once
-class Sound
+#include "Res.h"
+class Sound :
+    public Res
 {
 };
 
