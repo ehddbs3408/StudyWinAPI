@@ -1,6 +1,6 @@
 #pragma once
 class Image;
-class ResMgra
+class ResMgr
 {
 private:
 	map<wstring, Image*> m_mapImg;
@@ -11,6 +11,7 @@ private:
 	ResMgr();
 	~ResMgr();
 public:
-	Image* imgLoad(const wstring& _strKey, const wstring& _strrRe);
+	Image* ImgLoad(const wstring& _strKey, const wstring& _strRelativePath);
+	Image* ImgFind(const wstring& _strKey);
 };
 

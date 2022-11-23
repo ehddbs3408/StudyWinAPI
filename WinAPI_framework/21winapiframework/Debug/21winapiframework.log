@@ -1,2 +1,6 @@
-﻿  Player.cpp
-  21winapiframework.vcxproj -> C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\Output\bin_debug\21winapiframework.exe
+﻿  Image.cpp
+  Player.cpp
+  ResMgr.cpp
+  Scene_Start.cpp
+  main.cpp
+  21winapiframework.vcxproj -> C:\Users\USER\Desktop\21winapiframework\Output\bin_debug\21winapiframework.exe

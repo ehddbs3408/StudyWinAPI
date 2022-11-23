@@ -8,3 +8,4 @@ Res::Res()
 Res::~Res()
 {
 }
+

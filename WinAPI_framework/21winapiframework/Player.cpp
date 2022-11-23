@@ -7,18 +7,20 @@
 #include "Scene.h"
 #include "Image.h"
 #include "PathMgr.h"
+#include "ResMgr.h"
 Player::Player()
 	: m_pImage(nullptr)
 {
-	m_pImage = new Image;
-	wstring strFilePath = PathMgr::GetInst()->GetResPath();
-	strFilePath += L"Image\\planem.bmp";
-	m_pImage->Load(strFilePath);
+//	m_pImage = new Image;
+	/*wstring strFilePath = PathMgr::GetInst()->GetResPath();
+	strFilePath += L"Image\\planem.bmp";*/
+//	m_pImage->Load(strFilePath);
+	m_pImage = ResMgr::GetInst()->ImgLoad(L"PlayerImg", L"Image\\planem.bmp");
 }
 Player::~Player()
 {
-	if (nullptr != m_pImage)
-		delete m_pImage;
+	//if (nullptr != m_pImage)
+	//	delete m_pImage;
 }
 
 void Player::Update()

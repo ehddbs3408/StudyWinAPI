@@ -10,4 +10,5 @@
 #include <math.h>
 #include <map>
 using namespace std;
+
 #pragma comment(lib, "Msimg32.lib")

@@ -7,9 +7,10 @@ private:
     HBITMAP m_hBit;
     HDC     m_hDC;
     BITMAP  m_bitInfo;
-public:
+private:
     Image();
     ~Image();
+    friend class ResMgr;
 public:
     void Load(const wstring& _strFilePath);
     UINT GetWidth() { return m_bitInfo.bmWidth; }

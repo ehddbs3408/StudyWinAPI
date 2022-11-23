@@ -4,6 +4,7 @@
 Object::Object()
 	: m_vPos{}
 	, m_vScale{}
+	, m_pCollider(nullptr)
 {
 }
 

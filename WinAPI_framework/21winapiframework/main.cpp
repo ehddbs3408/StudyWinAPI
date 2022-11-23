@@ -6,7 +6,7 @@
 #include "21winapiframework.h"
 #include "BWindow.h"
 #include "Core.h"
-
+//#include <crtdbg.h>
 #define MAX_LOADSTRING 100
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -14,6 +14,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
+ //   _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+ //    _CrtSetBreakAlloc(207);
+ //   int* a = new int[10];
     BWindow game;
     game.Run(hInstance, lpCmdLine, nCmdShow);
 }

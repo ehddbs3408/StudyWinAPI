@@ -146,6 +146,7 @@
     <ClInclude Include="21winapiframework.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BWindow.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BWindow.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="KeyMgr.cpp" />

@@ -65,6 +65,9 @@
     <Filter Include="Engine\03. Manager\ResMgr">
       <UniqueIdentifier>{6098ba38-052b-406c-9eaa-7c6ba1e8565a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07. Component">
+      <UniqueIdentifier>{298a8031-5540-4c6d-a525-9c39adb746af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="21winapiframework.h">
@@ -136,6 +139,9 @@
     <ClInclude Include="ResMgr.h">
       <Filter>Engine\03. Manager\ResMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Engine\07. Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="21winapiframework.rc">
@@ -202,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="ResMgr.cpp">
       <Filter>Engine\03. Manager\ResMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Engine\07. Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
