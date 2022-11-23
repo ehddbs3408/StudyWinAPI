@@ -1,4 +1,5 @@
 #pragma once
+#include <assert.h>
 class Vec2
 {
 public:
@@ -13,5 +14,23 @@ public:
 	Vec2(POINT _pt);
 	Vec2& Normalize();
 	float Length();
+public:
+	Vec2 operator + (Vec2 _Oher)
+	{
+		return Vec2(x + _Oher.x, y + _Oher.y);
+	}
+	Vec2 operator - (Vec2 _Oher)
+	{
+		return Vec2(x - _Oher.x, y - _Oher.y);
+	}
+	Vec2 operator * (Vec2 _Oher)
+	{
+		return Vec2(x * _Oher.x, y * _Oher.y);
+	}
+	Vec2 operator / (Vec2 _Oher)
+	{
+		assert((_Oher.x == 0.f || _Oher.y == 0.f));
+		return Vec2(x / _Oher.x, y / _Oher.y);
+	}
 };
 

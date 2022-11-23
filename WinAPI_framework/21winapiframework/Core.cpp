@@ -31,6 +31,7 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	m_hBit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
 	SelectObject(m_memDC, m_hBit);
 
+	CreateBrushPen();
 
 	// =====Mgr 초기화=====
 	TimeMgr::GetInst()->Init();
@@ -73,4 +74,8 @@ void Core::Render()
 	// 제목에 dt 띄우는 render()
 	//	TimeMgr::GetInst()->Render();
 
+}
+
+void Core::CreateBrushPen()
+{
 }

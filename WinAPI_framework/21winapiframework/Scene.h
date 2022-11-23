@@ -28,5 +28,6 @@ public:
 	const wstring& GetName() { return m_strName; }
 	void	Update();
 	void	Render(HDC _dc);
+	void	FinalUpdate();
 };
 

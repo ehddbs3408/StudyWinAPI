@@ -86,5 +86,5 @@ void Player::Render(HDC _dc)
 		, m_pImage->GetDC()
 		, 0, 0, Width, Height,
 		RGB(255,0,255));
-
+	Component_Render(_dc);
 }
