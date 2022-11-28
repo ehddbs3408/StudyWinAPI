@@ -11,6 +11,7 @@ private:
 	friend class Object;
 public:
 	Collider();
+	Collider(const Collider& _origin);
 	~Collider();
 public:
 	void SetOffsetPos(Vec2 _vPos) { m_vOffsetPos = _vPos; }
@@ -19,5 +20,7 @@ public:
 	Vec2 GetScale() { return m_vScale; }
 public:
 	void FinalUpdate();
+	void Render(HDC _dc);
+	
 };
 

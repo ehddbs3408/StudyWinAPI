@@ -68,6 +68,9 @@
     <Filter Include="Engine\07. Component">
       <UniqueIdentifier>{298a8031-5540-4c6d-a525-9c39adb746af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\08.Module">
+      <UniqueIdentifier>{795deb7f-7923-46b4-8759-db8362bd53f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="21winapiframework.h">
@@ -142,6 +145,9 @@
     <ClInclude Include="Collider.h">
       <Filter>Engine\07. Component</Filter>
     </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>Engine\08.Module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="21winapiframework.rc">
@@ -211,6 +217,9 @@
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Engine\07. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectGDI.cpp">
+      <Filter>Engine\08.Module</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

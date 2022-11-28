@@ -32,6 +32,14 @@ public:
 	const HINSTANCE& GetInstanceHandle() { return m_hInstance; }
 	POINT& GetResolution() { return m_ptResolution; }
 	const HDC& GetMainDC() { return m_hDC; }
+	HBRUSH GetBrush(BRUSH_TYPE _eType)
+	{
+		return m_arrBrush[(UINT)_eType];
+	}
+	HPEN GetPen(PEN_TYPE _eType)
+	{
+		return m_arrPEN[(UINT)_eType];
+	}
 };
 // ½Ì±ÛÅæ 1¹ø ¹æ¹ý
 //class Core

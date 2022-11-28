@@ -19,6 +19,10 @@ Core::~Core()
 	ReleaseDC(m_hWnd, m_hDC);
 	DeleteDC(m_memDC);
 	DeleteObject(m_hBit);
+	for (int i = 0; i < (UINT)PEN_TYPE::END; i++)
+	{
+		DeleteObject(m_arrPEN[i]);
+	}
 }
 
 int Core::Init(HWND _hWnd, POINT _ptResolution)
@@ -78,4 +82,8 @@ void Core::Render()
 
 void Core::CreateBrushPen()
 {
+	m_arrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+	m_arrPEN[(UINT)PEN_TYPE::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	m_arrPEN[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	m_arrPEN[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 }

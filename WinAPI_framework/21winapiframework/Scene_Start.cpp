@@ -43,6 +43,7 @@ void Scene_Start::Enter()
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
 	
+	
 }
 
 void Scene_Start::Exit()
