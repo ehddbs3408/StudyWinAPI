@@ -7,6 +7,8 @@ Bullet::Bullet()
 	, m_vDir(Vec2(1.f,1.f))
 	 
 {
+	CreateCollider();
+
 }
 
 Bullet::~Bullet()

@@ -18,52 +18,28 @@ private:
 	HDC		m_hDC;			// 메인 윈도우에 Draw할 DC
 	HDC		m_memDC;		// 사본용 DC
 	HBITMAP	m_hBit;			// 사본용 비트맵
-	HBRUSH	m_arrBrush[(UINT)BRUSH_TYPE::END];
-	HPEN		m_arrPEN[(UINT)PEN_TYPE::END];
+	HBRUSH  m_arrBrush[(UINT)BRUSH_TYPE::END];
+	HPEN    m_arrPen[(UINT)PEN_TYPE::END];
+
 public:
 	int		Init(HWND _hWnd, POINT _ptResolution);
 	void    Progress();
 private:
 	void	Update();
 	void	Render();
-	void	CreateBrushPen();
+	void    CreateBrushPen();
 public:
 	const HWND& GetWndHandle() { return m_hWnd; }
 	const HINSTANCE& GetInstanceHandle() { return m_hInstance; }
 	POINT& GetResolution() { return m_ptResolution; }
 	const HDC& GetMainDC() { return m_hDC; }
+
 	HBRUSH GetBrush(BRUSH_TYPE _eType)
 	{
 		return m_arrBrush[(UINT)_eType];
 	}
 	HPEN GetPen(PEN_TYPE _eType)
 	{
-		return m_arrPEN[(UINT)_eType];
+		return m_arrPen[(UINT)_eType];
 	}
 };
-// 싱글톤 1번 방법
-//class Core
-//{
-//private:
-//	static Core* g_pInst;
-//public:
-//	static Core* GetInst()
-//	{
-//		//최초 
-//		//static Core* pCore = nullptr;
-//		if (nullptr == g_pInst)
-//		{
-//			g_pInst = new Core;
-//		}
-//		return g_pInst;
-//	}
-//	static void Release()
-//	{
-//		delete g_pInst;
-//		g_pInst = nullptr;
-//	}
-//private:
-//	Core();
-//	~Core();
-//};
-

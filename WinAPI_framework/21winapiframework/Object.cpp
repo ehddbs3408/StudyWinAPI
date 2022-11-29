@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Object.h"
 #include "Collider.h"
-
 Object::Object()
 	: m_vPos{}
 	, m_vScale{}
@@ -11,7 +10,7 @@ Object::Object()
 
 Object::~Object()
 {
-	if (m_pCollider)
+	if (nullptr != m_pCollider)
 		delete m_pCollider;
 }
 

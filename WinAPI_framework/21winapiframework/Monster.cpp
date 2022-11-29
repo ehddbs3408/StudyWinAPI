@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "Monster.h"
 #include "TimeMgr.h"
+#include "Collider.h"
 Monster::Monster()
 	: m_fSpeed(100.f)
 	, m_fMaxDis(50.f)
 	, m_vCenterPos(Vec2(0.f,0.f))
 	, m_fDir(1.f)
 {
+	CreateCollider();
+	GetCollider()->SetScale(Vec2(40.f, 40.f));
 }
 
 Monster::~Monster()

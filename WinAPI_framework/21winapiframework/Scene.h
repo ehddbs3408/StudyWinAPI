@@ -16,6 +16,11 @@ public:
 		m_vecObj[(UINT)_eType].push_back(_pObj);
 	}
 public:
+	const vector<Object*>& GetGroupObject(GROUP_TYPE _eType)
+	{
+		return m_vecObj[(UINT)_eType];
+	}
+public:
 	virtual void Enter() abstract;
 	virtual void Exit() abstract;
 
@@ -28,6 +33,6 @@ public:
 	const wstring& GetName() { return m_strName; }
 	void	Update();
 	void	Render(HDC _dc);
-	void	FinalUpdate();
+	void    FinalUpdate();
 };
 

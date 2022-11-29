@@ -6,6 +6,7 @@
 #include "Core.h"
 #include "Image.h"
 #include "PathMgr.h"
+#include "CollisionMgr.h"
 Scene_Start::Scene_Start()
 {
 }
@@ -42,10 +43,10 @@ void Scene_Start::Enter()
 		pMonsterObj->SetMoveDis(fMoveDist);
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
-	
-	
+	CollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
 }
 
 void Scene_Start::Exit()
 {
+	CollisionMgr::GetInst()->CheckReset();
 }

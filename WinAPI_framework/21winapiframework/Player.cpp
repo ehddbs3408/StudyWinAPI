@@ -8,6 +8,7 @@
 #include "Image.h"
 #include "PathMgr.h"
 #include "ResMgr.h"
+#include "Collider.h"
 Player::Player()
 	: m_pImage(nullptr)
 {
@@ -16,6 +17,9 @@ Player::Player()
 	strFilePath += L"Image\\planem.bmp";*/
 //	m_pImage->Load(strFilePath);
 	m_pImage = ResMgr::GetInst()->ImgLoad(L"PlayerImg", L"Image\\planem.bmp");
+	CreateCollider();
+	GetCollider()->SetScale(Vec2(20.f, 30.f));
+	//GetCollider()->SetOffSetPos(Vec2(100.f, 0.f));
 }
 Player::~Player()
 {

@@ -48,3 +48,5 @@ void Scene::Render(HDC _dc)
 		}
 	}
 }
+
+

@@ -18,14 +18,16 @@ public:
 	void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
 	const Vec2& GetPos() { return m_vPos; }
 	const Vec2& GetScale() { return m_vScale; }
-
+	Collider* GetCollider() { return m_pCollider; }
 public:
 //	virtual void	Update() = 0;
 	virtual void	Update() abstract;
 	virtual void	Render(HDC _dc);
 	void Component_Render(HDC _dc);
 public:
-	void	CreateCollider();
+	void CreateCollider();
 	virtual void FinalUpdate() final;
 };
 
+// 재정의 -> 오버라이딩
+// 중복정의 -> 오버로딩

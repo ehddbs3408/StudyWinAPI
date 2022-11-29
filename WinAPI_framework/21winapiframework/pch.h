@@ -9,6 +9,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <map>
+#include <assert.h>
 using namespace std;
 
 #pragma comment(lib, "Msimg32.lib")

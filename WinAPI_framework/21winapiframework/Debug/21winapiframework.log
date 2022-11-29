@@ -1,24 +1,7 @@
-﻿  Bullet.cpp
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\21winapiframework\Bullet.cpp(9,1): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
-  BWindow.cpp
-  Collider.cpp
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\21winapiframework\Collider.cpp(22,12): error C2374: 'p': 재정의. 여러 번 초기화했습니다.
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\21winapiframework\Collider.cpp(21): message : 'p' 선언을 참조하십시오.
+﻿  CollisionMgr.cpp
   Core.cpp
-  Image.cpp
-  KeyMgr.cpp
-  main.cpp
-  Monster.cpp
-  Object.cpp
-  PathMgr.cpp
   Player.cpp
-  Res.cpp
-  ResMgr.cpp
   Scene.cpp
   SceneMgr.cpp
   Scene_Start.cpp
-  SelectGDI.cpp
-  Sound.cpp
-  TimeMgr.cpp
-  Vec2.cpp
-C:\Users\USER\source\repos\WinAPI\StudyWinAPI\WinAPI_framework\21winapiframework\Vec2.cpp(37,13): warning C4244: 'return': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  21winapiframework.vcxproj -> C:\Users\USER\Desktop\21winapiframework\Output\bin_debug\21winapiframework.exe

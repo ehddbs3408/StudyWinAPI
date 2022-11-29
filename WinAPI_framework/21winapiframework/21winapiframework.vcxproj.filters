@@ -68,8 +68,11 @@
     <Filter Include="Engine\07. Component">
       <UniqueIdentifier>{298a8031-5540-4c6d-a525-9c39adb746af}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\08.Module">
-      <UniqueIdentifier>{795deb7f-7923-46b4-8759-db8362bd53f2}</UniqueIdentifier>
+    <Filter Include="Engine\08. Module">
+      <UniqueIdentifier>{d3f6b007-449a-4eb6-a338-2a7da311742d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\CollisionMgr">
+      <UniqueIdentifier>{57f5cab3-751f-4a3c-b6a1-d0b73b68e235}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,11 +145,14 @@
     <ClInclude Include="ResMgr.h">
       <Filter>Engine\03. Manager\ResMgr</Filter>
     </ClInclude>
+    <ClInclude Include="SelectGDI.h">
+      <Filter>Engine\08. Module</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>Engine\03. Manager\CollisionMgr</Filter>
+    </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Engine\07. Component</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectGDI.h">
-      <Filter>Engine\08.Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +225,10 @@
       <Filter>Engine\07. Component</Filter>
     </ClCompile>
     <ClCompile Include="SelectGDI.cpp">
-      <Filter>Engine\08.Module</Filter>
+      <Filter>Engine\08. Module</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>Engine\03. Manager\CollisionMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

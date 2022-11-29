@@ -15,22 +15,23 @@ public:
 	Vec2& Normalize();
 	float Length();
 public:
-	Vec2 operator + (Vec2 _Oher)
+	Vec2 operator + (Vec2 _Other)
 	{
-		return Vec2(x + _Oher.x, y + _Oher.y);
+		return Vec2(x + _Other.x, y + _Other.y);
 	}
-	Vec2 operator - (Vec2 _Oher)
+	Vec2 operator - (Vec2 _Other)
 	{
-		return Vec2(x - _Oher.x, y - _Oher.y);
+		return Vec2(x - _Other.x, y - _Other.y);
 	}
-	Vec2 operator * (Vec2 _Oher)
+	Vec2 operator * (Vec2 _Other)
 	{
-		return Vec2(x * _Oher.x, y * _Oher.y);
+		return Vec2(x * _Other.x, y * _Other.y);
 	}
-	Vec2 operator / (Vec2 _Oher)
+	Vec2 operator / (Vec2 _Other)
 	{
-		assert((_Oher.x == 0.f || _Oher.y == 0.f));
-		return Vec2(x / _Oher.x, y / _Oher.y);
+		assert(!(_Other.x == 0.f || _Other.y == 0.f));
+		return Vec2(x / _Other.x, y / _Other.y);
 	}
+
 };
 

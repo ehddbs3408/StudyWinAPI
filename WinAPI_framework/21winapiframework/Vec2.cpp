@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Vec2.h"
-#include <assert.h>
 Vec2::Vec2()
 {
 }
@@ -34,7 +33,7 @@ Vec2::Vec2(POINT _pt)
 }
 float Vec2::Length()
 {
-	return sqrt(x * x + y * y);
+	return sqrt((x * x) + (y * y));
 }
 
 Vec2& Vec2::Normalize()
